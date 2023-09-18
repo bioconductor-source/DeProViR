@@ -9,6 +9,7 @@
    #' @importFrom BiocFileCache BiocFileCache
    #' @importFrom BiocFileCache bfcrpath
    #' @importFrom BiocFileCache bfcinfo
+   #' @importFrom BiocFileCache bfcquery
    #' @importFrom utils unzip
    #' @examples
    #' options(timeout=240)
@@ -27,7 +28,8 @@
               sep="/")
             bfc <- BiocFileCache()
             path <- bfcrpath(bfc, url)
-            lines <- readLines(unzip(zipfile = bfcinfo(bfc)$rpath,
+            getid <- bfcquery(bfc, "glove")$rid
+            lines <- readLines(unzip(zipfile = bfcinfo(bfc[getid])$rpath,
                                      files = "glove.6B.100d.txt",
                                      exdir = tempfile()))
             embeddings_index <- new.env(hash = TRUE, parent = emptyenv())
