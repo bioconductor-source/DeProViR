@@ -11,7 +11,7 @@
    #' @importFrom BiocFileCache bfcinfo
    #' @importFrom utils unzip
    #' @examples
-   #' options(timeout=120)
+   #' options(timeout=240)
    #' embeddings_index <-
    #' gloveEmb_import(url_path = "https://nlp.stanford.edu/data")
 
@@ -796,7 +796,7 @@
    #' system.file("extdata/test_set/test_set_unknownInteraction.csv",
    #' package = "DeProViR"))
    #' # now predict interactions
-   #' options(timeout=120)
+   #' options(timeout=240)
    #' predInteractions <-
    #'  predInteractions(url_path = "https://nlp.stanford.edu/data",
    #'  testing_set, trainedModel)
