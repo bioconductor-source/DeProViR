@@ -262,6 +262,10 @@ function to load the finely-tuned pre-trained model for predictive purposes.
 
 ```{r message=FALSE, warning=FALSE}
 if (keras::is_keras_available() & reticulate::py_available()){
+options(timeout=240)
+library(tensorflow)
+library(data.table)
+library(DeProViR)
 pre_trainedmodel <- 
    Load_PreTrainedModel()
 }
