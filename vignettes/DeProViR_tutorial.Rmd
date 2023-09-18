@@ -292,7 +292,7 @@ scoredPPIs
 ```
 
 
-```{r warning=FALSE, message=FALSE}
+```{r warning=FALSE, message=FALSE, eval=FALSE}
 if (keras::is_keras_available() & reticulate::py_available()){
 # or using the newly trained model 
 predInteractions(url_path = "https://nlp.stanford.edu/data",
