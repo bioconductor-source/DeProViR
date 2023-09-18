@@ -27,7 +27,7 @@
               sep="/")
             bfc <- BiocFileCache()
             path <- bfcrpath(bfc, url)
-            lines <- readLines(unzip(zipfile = bfcinfo(bfc["BFC1"])$rpath,
+            lines <- readLines(unzip(zipfile = bfcinfo(bfc)$rpath,
                                      files = "glove.6B.100d.txt",
                                      exdir = tempfile()))
             embeddings_index <- new.env(hash = TRUE, parent = emptyenv())
