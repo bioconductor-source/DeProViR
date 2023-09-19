@@ -44,6 +44,7 @@ Suggests:
    BiocStyle,
    RUnit,
    knitr,
+   reticulate,
    BiocGenerics
 biocViews: 
     Proteomics,
