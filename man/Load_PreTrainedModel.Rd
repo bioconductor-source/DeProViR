@@ -72,7 +72,5 @@ previously using \code{\link[DeProViR]{ModelTraining}}
 Load_PreTrainedModel
 }
 \examples{
-if (keras::is_keras_available() & reticulate::py_available()){
 Loading_trainedModel <- Load_PreTrainedModel()
-}
 }

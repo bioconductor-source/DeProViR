@@ -34,7 +34,6 @@ to indicate interaction.
 predInteractions
 }
 \examples{
-if (keras::is_keras_available() & reticulate::py_available()){
 trainedModel <- Load_PreTrainedModel()
 # load test set (i.e., unknown interactions)
 testing_set <- data.table::fread(
@@ -45,6 +44,4 @@ options(timeout=240)
 predInteractions <-
  predInteractions(url_path = "https://nlp.stanford.edu/data",
  testing_set, trainedModel)
-}
-
 }

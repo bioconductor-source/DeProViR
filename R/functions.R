@@ -107,12 +107,10 @@
    #' @examples
    #' # Download and load the index
    #' embeddings_index <- gloveEmb_import()
-   #' if (keras::is_keras_available() & reticulate::py_available()){
    #' #load training set
    #' dt <- load_TrainingSet()
    #' #encoding
    #' encoded_seq <- encode_ViralSeq(dt, embeddings_index)
-   #' }
 
    encode_ViralSeq <- function(trainingSet,
                                embeddings_index) {
@@ -168,12 +166,10 @@
    #' @examples
    #' # Download and load the index
    #' embeddings_index <- gloveEmb_import()
-   #' if (keras::is_keras_available() & reticulate::py_available()){
    #' #load training set
    #' dt <- load_TrainingSet()
    #' #encoding
    #' encoded_seq <- encode_HostSeq(dt, embeddings_index)
-   #' }
 
 
    encode_HostSeq <- function(trainingSet,embeddings_index) {
@@ -648,9 +644,7 @@
    #' @importFrom data.table fread
    #' @export
    #' @examples
-   #' if (keras::is_keras_available() & reticulate::py_available()){
    #' Loading_trainedModel <- Load_PreTrainedModel()
-   #' }
 
 
    Load_PreTrainedModel <-
@@ -771,7 +765,6 @@
    #'@return Probability scores for unknown interactions
    #'@export
    #'@examples
-   #'if (keras::is_keras_available() & reticulate::py_available()){
    #' trainedModel <- Load_PreTrainedModel()
    #' # load test set (i.e., unknown interactions)
    #' testing_set <- data.table::fread(
@@ -782,8 +775,6 @@
    #' predInteractions <-
    #'  predInteractions(url_path = "https://nlp.stanford.edu/data",
    #'  testing_set, trainedModel)
-   #' }
-   #'
 
    predInteractions <-
       function(url_path = "https://nlp.stanford.edu/data",
