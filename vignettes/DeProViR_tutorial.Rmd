@@ -216,7 +216,6 @@ To run ModelTraining, we can use the following commands:
 
 ```{r, message=FALSE, warning=FALSE}
 
-if (keras::is_keras_available() & reticulate::py_available()){
 options(timeout=240)
 library(tensorflow)
 library(data.table)
@@ -244,7 +243,6 @@ model_training <- ModelTraining(
       tpath = tempdir(),
       save_model_weights = FALSE,
       filepath = tempdir()) 
-}
 ```
 
 When the plots argument set to TRUE, the `ModelTraining` function generates one 
@@ -261,14 +259,13 @@ In this context, users have the option to employ the `Load_PreTrainedModel`
 function to load the finely-tuned pre-trained model for predictive purposes. 
 
 ```{r message=FALSE, warning=FALSE}
-if (keras::is_keras_available() & reticulate::py_available()){
 options(timeout=240)
 library(tensorflow)
 library(data.table)
 library(DeProViR)
 pre_trainedmodel <- 
    Load_PreTrainedModel()
-}
+
 ```
 
 
@@ -278,7 +275,6 @@ generate predictions on unlabeled data, specifically on interactions that are
 yet to be identified. This can be achieved by executing the following commands:
 
 ```{r}
-if (keras::is_keras_available() & reticulate::py_available()){
 #load the demo test set (unknown interactions)
 testing_set <- fread(
    system.file("extdata/test_set/test_set_unknownInteraction.csv",
@@ -288,17 +284,16 @@ scoredPPIs <- predInteractions(
                  testing_set,
                  trainedModel = pre_trainedmodel)
 scoredPPIs
-}
+
 ```
 
 
 ```{r warning=FALSE, message=FALSE}
-if (keras::is_keras_available() & reticulate::py_available()){
 # or using the newly trained model 
 predInteractions(url_path = "https://nlp.stanford.edu/data",
                  testing_set,
                  trainedModel = model_training)
-}
+
 ```
 
 
