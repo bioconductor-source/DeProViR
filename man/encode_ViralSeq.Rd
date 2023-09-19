@@ -37,5 +37,4 @@ dt <- load_TrainingSet()
 #encoding
 encoded_seq <- encode_ViralSeq(dt, embeddings_index)
 }
-
 }
