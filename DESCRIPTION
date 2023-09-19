@@ -35,7 +35,9 @@ Imports:
     PRROC,
     readr,
     stats,
-    BiocFileCache
+    BiocFileCache,
+    basilisk,
+    utils 
 VignetteBuilder: knitr
 Suggests:
    rmarkdown,
@@ -52,3 +54,4 @@ biocViews:
     NeuralNetwork,
     Network
 RoxygenNote: 7.2.3
+StagedInstall: no
