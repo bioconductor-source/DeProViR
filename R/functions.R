@@ -61,7 +61,7 @@
    #' dt <- load_TrainingSet()
 
    load_TrainingSet <-
-      function(training_dir =  system.file("extdata/training_Set",
+      function(training_dir =  system.file("extdata", "training_Set",
                                            package = "DeProViR")) {
 
 
@@ -666,7 +666,7 @@
 
          ## viral side
          embedding_matrix_v <-
-            fread(system.file("extdata/Pre_trainedModel/viral_embedding.csv",
+            fread(system.file("extdata","Pre_trainedModel","viral_embedding.csv",
                                  package = "DeProViR"))
          embedding_matrix_v <- as.matrix(embedding_matrix_v)
 
@@ -696,7 +696,7 @@
 
          ## host side
          embedding_matrix_h <-
-            fread(system.file("extdata/Pre_trainedModel/host_embedding.csv",
+            fread(system.file("extdata","Pre_trainedModel","host_embedding.csv",
                                  package = "DeProViR"))
          embedding_matrix_h <- as.matrix(embedding_matrix_h)
 
