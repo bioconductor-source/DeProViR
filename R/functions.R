@@ -426,7 +426,7 @@
 
    ModelTraining <- function(
       url_path = "https://nlp.stanford.edu/data",
-      training_dir = system.file("extdata/training_Set",
+      training_dir = system.file("extdata", "training_Set",
                                  package = "DeProViR"),
       input_dim = 20,
       output_dim = 100,
