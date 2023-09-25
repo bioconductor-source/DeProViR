@@ -277,7 +277,7 @@ yet to be identified. This can be achieved by executing the following commands:
 ```{r}
 #load the demo test set (unknown interactions)
 testing_set <- fread(
-   system.file("extdata/test_set/test_set_unknownInteraction.csv",
+   system.file("extdata", "test_Set", "test_set_unknownInteraction.csv",
                                            package = "DeProViR"))
 scoredPPIs <- predInteractions( 
     url_path = "https://nlp.stanford.edu/data",
