@@ -21,9 +21,7 @@ vectors (100d).
 gloveEmb_import
 }
 \examples{
-\donttest{
 options(timeout=240)
 embeddings_index <-
 gloveEmb_import(url_path = "https://nlp.stanford.edu/data")
-}
 }
