@@ -106,6 +106,13 @@
    #' @importFrom keras pad_sequences
    #' @importFrom dplyr %>%
    #' @export
+   #' @examples
+   #' # Download and load the index
+   #' embeddings_index <- gloveEmb_import()
+   #' #load training set
+   #' dt <- load_TrainingSet()
+   #' #encoding
+   #' encoded_seq <- encode_ViralSeq(dt, embeddings_index)
 
    encode_ViralSeq <- function(trainingSet,
                                embeddings_index) {

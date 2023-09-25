@@ -28,3 +28,11 @@ word-vector-generationvector map.
 \details{
 encode_ViralSeq
 }
+\examples{
+# Download and load the index
+embeddings_index <- gloveEmb_import()
+#load training set
+dt <- load_TrainingSet()
+#encoding
+encoded_seq <- encode_ViralSeq(dt, embeddings_index)
+}
