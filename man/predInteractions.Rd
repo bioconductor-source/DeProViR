@@ -37,7 +37,7 @@ predInteractions
 trainedModel <- Load_PreTrainedModel()
 # load test set (i.e., unknown interactions)
 testing_set <- data.table::fread(
-system.file("extdata/test_set/test_set_unknownInteraction.csv",
+system.file("extdata", "test_Set", "test_set_unknownInteraction.csv",
 package = "DeProViR"))
 # now predict interactions
 options(timeout=240)
