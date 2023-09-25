@@ -658,7 +658,7 @@
                layer_lstm = 64,
                units = 8,
                metrics = "AUC",
-               filepath = system.file("extdata/Pre_trainedModel",
+               filepath = system.file("extdata", "Pre_trainedModel",
                                       package = "DeProViR")){
 
 
