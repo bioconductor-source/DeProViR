@@ -1,4 +1,4 @@
-   #' gloveEmb_import
+   #' gloveImport
    #' @title Cache and Load Pre-Trained Word Vectors
    #' @param url_path  URL path to GloVe embedding. Defaults to
    #' "https://nlp.stanford.edu/data"
@@ -14,11 +14,11 @@
    #' @examples
    #' options(timeout=240)
    #' embeddings_index <-
-   #' gloveEmb_import(url_path = "https://nlp.stanford.edu/data")
+   #' gloveImport(url_path = "https://nlp.stanford.edu/data")
 
 
 
-    gloveEmb_import <-
+    gloveImport <-
         function(url_path = "https://nlp.stanford.edu/data") {
 
 
@@ -46,7 +46,7 @@
 
 
 
-   #' load_TrainingSet
+   #' loadTrainingSet
    #' @title Load Demo Training Set
    #' @param training_dir dir containing a training data.frame .csv
    #' Default set to "extdata/training_testSets".
@@ -58,9 +58,9 @@
    #' @importFrom readr cols
    #' @export
    #' @examples
-   #' dt <- load_TrainingSet()
+   #' dt <- loadTrainingSet()
 
-   load_TrainingSet <-
+   loadTrainingSet <-
       function(training_dir =  system.file("extdata", "training_Set",
                                            package = "DeProViR")) {
 
@@ -84,11 +84,11 @@
       }
 
 
-   #' encode_ViralSeq
+   #' encodeViralSeq
    #' @title Viral Protein Sequence Encoding with GloVe Embedding Vectors
    #' @param trainingSet a data.frame containing training information
    #' @param embeddings_index embedding outputted from
-   #' \code{\link[DeProViR]{gloveEmb_import}}
+   #' \code{\link[DeProViR]{gloveImport}}
    #' @return A list containing Embedding matrix and tokenization
    #' @description This function first first encodes amino acids as a sequence
    #' of unique 20 integers though tokenizer. The padding token was added to the
@@ -106,13 +106,13 @@
    #' @export
    #' @examples
    #' # Download and load the index
-   #' embeddings_index <- gloveEmb_import()
+   #' embeddings_index <- gloveImport()
    #' #load training set
-   #' dt <- load_TrainingSet()
+   #' dt <- loadTrainingSet()
    #' #encoding
-   #' encoded_seq <- encode_ViralSeq(dt, embeddings_index)
+   #' encoded_seq <- encodeViralSeq(dt, embeddings_index)
 
-   encode_ViralSeq <- function(trainingSet,
+   encodeViralSeq <- function(trainingSet,
                                embeddings_index) {
 
       v_text <- strsplit(trainingSet$Virus_Seq, "")
@@ -148,11 +148,11 @@
    }
 
 
-   #' encode_HostSeq
+   #' encodeHostSeq
    #' @title Host Protein Sequence Encoding with GloVe Embedding Vectors
    #' @param trainingSet a data.frame containing training information
    #' @param embeddings_index embedding outputted from
-   #' \code{\link[DeProViR]{gloveEmb_import}}
+   #' \code{\link[DeProViR]{gloveImport}}
    #' @return A list containing Embedding matrix and tokenization
    #' @description This function first first encodes amino acids as a sequence
    #' of unique 20 integers though tokenizer. The padding token was added to the
@@ -165,14 +165,14 @@
    #' @export
    #' @examples
    #' # Download and load the index
-   #' embeddings_index <- gloveEmb_import()
+   #' embeddings_index <- gloveImport()
    #' #load training set
-   #' dt <- load_TrainingSet()
+   #' dt <- loadTrainingSet()
    #' #encoding
-   #' encoded_seq <- encode_HostSeq(dt, embeddings_index)
+   #' encodeHostSeq <- encodeHostSeq(dt, embeddings_index)
 
 
-   encode_HostSeq <- function(trainingSet,embeddings_index) {
+   encodeHostSeq <- function(trainingSet,embeddings_index) {
 
       h_text <- strsplit(trainingSet$Human_Seq, "")
       h_text <- unname(rapply(h_text, paste, collapse=" "))
@@ -206,7 +206,7 @@
 
 
 
-   #' ModelPerformance_evalPlots
+   #' performancePlots
    #' @title Model Performance Evalution
    #' @param pred_label predicted labels
    #' @param y_label Ground truth labels
@@ -240,13 +240,14 @@
    #' @importFrom grDevices recordPlot
    #' @export
    #' @examples
-   #' pred_label = seq(0,1, length.out = 100)
-   #' truth_label = rep(c(0,1), each = 50)
-   #' perf <- ModelPerformance_evalPlots(pred_label, truth_label,
-   #' tpath = tempdir())
+   #' pred_label <- seq(0,1, length.out = 100)
+   #' truth_label <- rep(c(0,1), each = 50)
+   #' perf <- performancePlots(pred_label,
+   #'                          truth_label,
+   #'                          tpath = tempdir())
 
 
-   ModelPerformance_evalPlots <-
+   performancePlots <-
       function(pred_label, y_label, tpath = tempdir()) {
 
          V1 <- NULL
@@ -351,12 +352,12 @@
       }
 
 
-   #' ModelTraining
+   #' modelTraining
    #' @title Predictive Model Training using k-fold Validation Strategy
    #' @param url_path  URL path to GloVe embedding. Defaults to
    #' "https://nlp.stanford.edu/data/glove.6B.zip".
    #' @param training_dir dir containing viral-host training set.
-   #' See \code{\link[DeProViR]{load_TrainingSet}}
+   #' See \code{\link[DeProViR]{loadTrainingSet}}
    #' @param input_dim Integer. Size of the vocabulary, i.e. amino acid
    #' tokens. Defults to 20. See \code{keras}.
    #' @param output_dim Integer. Dimension of the dense embedding,
@@ -391,11 +392,11 @@
    #' @param batch_size Number of samples per gradient update.Defults to 128.
    #' See \code{keras}
    #' @param plots PDF file containing perfromance measures. Defaults to TRUE.
-   #' See \code{\link[DeProViR]{ModelPerformance_evalPlots}}
+   #' See \code{\link[DeProViR]{performancePlots}}
    #' @param tpath A character string indicating the path to the project
    #' directory. If the directory is missing, PDF file containing perfromance
    #' measures will be stored in the Temp directory.
-   #' See \code{\link[DeProViR]{ModelPerformance_evalPlots}}
+   #' See \code{\link[DeProViR]{performancePlots}}
    #' @param save_model_weights If TRUE, save the trained weights.
    #' Defaults to TRUE.
    #' @param filepath A character string indicating the path to save
@@ -423,8 +424,11 @@
    #' @importFrom keras save_model_weights_hdf5
    #' @importFrom stats predict
    #' @export
+   #' @examples
+   #' options(timeout=240)
+   #' trained_model <- modelTraining(cv_fold = 2, plots = FALSE)
 
-   ModelTraining <- function(
+   modelTraining <- function(
       url_path = "https://nlp.stanford.edu/data",
       training_dir = system.file("extdata", "training_Set",
                                  package = "DeProViR"),
@@ -449,26 +453,26 @@
 
       #### Glove importing
       embeddings_index <-
-         gloveEmb_import(url_path)
+          gloveImport(url_path)
 
       message("GLoVe importing is done ....")
 
       #### Load training set
       dt <-
-         load_TrainingSet(training_dir)
+          loadTrainingSet(training_dir)
 
       message("Training Set importing is done ....")
 
       #### viral embedding
       viral_embedding <-
-         encode_ViralSeq(dt, embeddings_index)
+          encodeViralSeq(dt, embeddings_index)
 
       message("Viral Embedding is done ....")
 
 
       #### host embedding
       host_embedding <-
-         encode_HostSeq(dt, embeddings_index)
+          encodeHostSeq(dt, embeddings_index)
 
       message("Hose Embedding is done ....")
 
@@ -567,8 +571,8 @@
             merge_model %>% fit(
                x =  list(xcal[,1:1000],xcal[,1001:2000]),
                ycal,
-               epochs = 100,
-               batch_size = 128,
+               epochs = epochs,
+               batch_size = batch_size,
                callbacks =
                   list(callback_early_stopping(monitor = "auc", patience = 3,
                                                restore_best_weights = TRUE)))
@@ -582,7 +586,7 @@
       if(plots) {
 
          model_perf <-
-            ModelPerformance_evalPlots(prob, dt$Label, tpath)
+             performancePlots(prob, dt$Label, tpath)
 
       }
 
@@ -602,7 +606,7 @@
 
 
 
-   #' Load_PreTrainedModel
+   #' loadPreTrainedModel
    #' @title Load Pre-Trained Model Wights
    #' @param input_dim Integer. Size of the vocabulary, i.e. amino acid tokens.
    #' Defults to 20. See \code{keras}.
@@ -639,15 +643,15 @@
    #' pre-trained model weights, i.e., inst/extdata/Pre-trainedModel
    #' @return Pre-trained model.
    #' @description This function loads the pre-trained model weights constructed
-   #' previously using \code{\link[DeProViR]{ModelTraining}}
+   #' previously using \code{\link[DeProViR]{modelTraining}}
    #' @importFrom keras load_model_weights_hdf5
    #' @importFrom data.table fread
    #' @export
    #' @examples
-   #' Loading_trainedModel <- Load_PreTrainedModel()
+   #' Loading_trainedModel <- loadPreTrainedModel()
 
 
-   Load_PreTrainedModel <-
+   loadPreTrainedModel <-
       function(input_dim = 20,
                output_dim = 100,
                filters_layer1CNN = 32,
@@ -757,7 +761,7 @@
    #'we can use the file in extdata/test_Set.
    #'@param trainedModel Pre-trained model stored in extdata/Pre_trainedModel
    #'or the training model "$merge_model" achieved by
-   #'\code{\link[DeProViR]{ModelTraining}}.
+   #'\code{\link[DeProViR]{modelTraining}}.
    #'@description This function initially constructs an embedding matrix from
    #'the viral or host protein sequences and then predicts scores for unknown
    #'interactions. Interactions with scores greater than 0.5 are more likely
@@ -765,16 +769,16 @@
    #'@return Probability scores for unknown interactions
    #'@export
    #'@examples
-   #' trainedModel <- Load_PreTrainedModel()
+   #' trainedModel <- loadPreTrainedModel()
    #' # load test set (i.e., unknown interactions)
    #' testing_set <- data.table::fread(
    #' system.file("extdata", "test_Set", "test_set_unknownInteraction.csv",
    #' package = "DeProViR"))
    #' # now predict interactions
    #' options(timeout=240)
-   #' predInteractions <-
-   #'  predInteractions(url_path = "https://nlp.stanford.edu/data",
-   #'  testing_set, trainedModel)
+   #' predInteractions <- predInteractions(url_path = "https://nlp.stanford.edu/data",
+   #'                     testing_set,
+   #'                     trainedModel)
 
    predInteractions <-
       function(url_path = "https://nlp.stanford.edu/data",
@@ -783,20 +787,20 @@
 
          #### Glove importing
          embeddings_index <-
-            gloveEmb_import(url_path)
+             gloveImport(url_path)
 
          message("GLoVe importing is done ....")
 
          #### viral embedding
          viral_embedding <-
-            encode_ViralSeq(Testingset, embeddings_index)
+             encodeViralSeq(Testingset, embeddings_index)
 
          message("Viral Embedding is done ....")
 
 
          #### host embedding
          host_embedding <-
-            encode_HostSeq(Testingset, embeddings_index)
+             encodeHostSeq(Testingset, embeddings_index)
 
          message("Host Embedding is done ....")
 

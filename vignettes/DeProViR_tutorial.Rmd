@@ -132,7 +132,7 @@ take the time to carefully fine-tune the hyperparameters using
 optimal results. 
 
 # First Approach
-The `ModelTraining` function included in this package allows users to update 
+The `modelTraining` function included in this package allows users to update 
 the training dataset. It begins by converting protein sequences into amino 
 acid tokens, where tokens are mapped to positive integers. Next, it represents 
 each amino acid token using pre-trained co-occurrence embedding vectors 
@@ -144,14 +144,14 @@ that the newly imported training set adheres to the format of the sample
 training set stored in the **inst/extdata/trainingSet** directory of 
 the DeProViR package.
 
-The `ModelTraining`  function takes following parameters:
+The `modelTraining`  function takes following parameters:
 
 - `url_path`  URL path to GloVe embedding. Defaults to 
 "https://nlp.stanford.edu/data".
-See `\code{\link[DeProViR]{gloveEmb_import}}`. 
+See `\code{\link[DeProViR]{gloveImport}}`. 
 
 - `training_dir` Directory containing viral-host training set.
-`See \code{\link[DeProViR]{load_TrainingSet}}`. 
+`See \code{\link[DeProViR]{loadTrainingSet}}`. 
 Defaults to `inst/extdata/training_Set`.
 
 - `input_dim` Integer. Size of the vocabulary, i.e. amino acid
@@ -212,9 +212,9 @@ Defaults to TRUE. See `\code{keras}`.
 - `filepath` A character string indicating the path to save the model weights
 after training. Default to tempdir(). See `\code{keras}`.
 
-To run ModelTraining, we can use the following commands:
+To run `modelTraining`, we can use the following commands:
 
-```{r, message=FALSE, warning=FALSE, eval=FALSE}
+```{r, message=FALSE, warning=FALSE, eval=TRUE}
 
 options(timeout=240)
 library(tensorflow)
@@ -222,7 +222,7 @@ library(data.table)
 library(DeProViR)
 
 tensorflow::set_random_seed(101)
-model_training <- ModelTraining(
+model_training <- modelTraining(
       url_path = "https://nlp.stanford.edu/data",
       training_dir = system.file("extdata", "training_Set",
                               package = "DeProViR"),
@@ -236,7 +236,7 @@ model_training <- ModelTraining(
       layer_lstm = 64,
       units = 8,
       metrics = "AUC",
-      cv_fold = 5,
+      cv_fold = 2,
       epochs = 100,
       batch_size = 128,
       plots = FALSE,
@@ -245,7 +245,7 @@ model_training <- ModelTraining(
       filepath = tempdir()) 
 ```
 
-When the plots argument set to TRUE, the `ModelTraining` function generates one 
+When the plots argument set to TRUE, the `modelTraining` function generates one 
 pdf file containing three figures as shown below indicating the performance of 
 the DL model using k-fold cross-validation.
 
@@ -255,7 +255,7 @@ align="center">
 
 
 # Second Approach
-In this context, users have the option to employ the `Load_PreTrainedModel` 
+In this context, users have the option to employ the `loadPreTrainedModel` 
 function to load the finely-tuned pre-trained model for predictive purposes. 
 
 ```{r message=FALSE, warning=FALSE}
@@ -264,7 +264,7 @@ library(tensorflow)
 library(data.table)
 library(DeProViR)
 pre_trainedmodel <- 
-   Load_PreTrainedModel()
+   loadPreTrainedModel()
 
 ```
 
@@ -288,7 +288,7 @@ scoredPPIs
 ```
 
 
-```{r warning=FALSE, message=FALSE, eval=FALSE}
+```{r warning=FALSE, message=FALSE, eval=TRUE}
 # or using the newly trained model 
 predInteractions(url_path = "https://nlp.stanford.edu/data",
                  testing_set,
