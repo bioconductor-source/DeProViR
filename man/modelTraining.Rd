@@ -108,9 +108,3 @@ predict interactions between host and viral proteins.
 \details{
 modelTraining
 }
-\examples{
-options(timeout=240)
-trained_model <- modelTraining(cv_fold = 2, 
-                               plots = FALSE,
-                               epochs = 5) 
-}
