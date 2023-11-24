@@ -426,7 +426,9 @@
    #' @export
    #' @examples
    #' options(timeout=240)
-   #' trained_model <- modelTraining(cv_fold = 2, plots = FALSE)
+   #' trained_model <- modelTraining(cv_fold = 2, 
+   #'                                plots = FALSE,
+   #'                                epochs = 5) 
 
    modelTraining <- function(
       url_path = "https://nlp.stanford.edu/data",

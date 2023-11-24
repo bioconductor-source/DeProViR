@@ -237,7 +237,7 @@ model_training <- modelTraining(
       units = 8,
       metrics = "AUC",
       cv_fold = 2,
-      epochs = 100,
+      epochs = 5, # for the sake of this example 
       batch_size = 128,
       plots = FALSE,
       tpath = tempdir(),
