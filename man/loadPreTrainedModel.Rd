@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{loadPreTrainedModel}
 \alias{loadPreTrainedModel}
-\title{Load Pre-Trained Model Wights}
+\title{Load Pre-Trained Model Weights}
 \usage{
 loadPreTrainedModel(
   input_dim = 20,
@@ -67,9 +67,6 @@ Pre-trained model.
 \description{
 This function loads the pre-trained model weights constructed
 previously using \code{\link[DeProViR]{modelTraining}}
-}
-\details{
-loadPreTrainedModel
 }
 \examples{
 Loading_trainedModel <- loadPreTrainedModel()

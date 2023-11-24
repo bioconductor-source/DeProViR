@@ -25,9 +25,6 @@ rows represent the amino acid tokens created earlier, and columns
 correspond to 100-dimension weight vectors derived from GloVe
 word-vector-generation vector map.
 }
-\details{
-encodeHostSeq
-}
 \examples{
 # Download and load the index
 embeddings_index <- gloveImport()

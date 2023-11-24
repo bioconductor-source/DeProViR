@@ -18,9 +18,6 @@ data.frame
 \description{
 This function loads demo training set.
 }
-\details{
-loadTrainingSet
-}
 \examples{
 dt <- loadTrainingSet()
 }

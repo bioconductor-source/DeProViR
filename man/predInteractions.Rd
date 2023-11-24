@@ -30,9 +30,6 @@ the viral or host protein sequences and then predicts scores for unknown
 interactions. Interactions with scores greater than 0.5 are more likely
 to indicate interaction.
 }
-\details{
-predInteractions
-}
 \examples{
 trainedModel <- loadPreTrainedModel()
 # load test set (i.e., unknown interactions)
@@ -42,6 +39,6 @@ package = "DeProViR"))
 # now predict interactions
 options(timeout=240)
 predInteractions <- predInteractions(url_path = "https://nlp.stanford.edu/data",
-                    testing_set,
-                    trainedModel)
+                                     testing_set,
+                                     trainedModel)
 }

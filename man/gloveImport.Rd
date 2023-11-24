@@ -17,9 +17,6 @@ glove embedding
 This function cache and loads pre-trained GloVe
 vectors (100d).
 }
-\details{
-gloveImport
-}
 \examples{
 options(timeout=240)
 embeddings_index <-

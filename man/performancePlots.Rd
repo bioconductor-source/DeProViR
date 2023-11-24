@@ -21,9 +21,6 @@ Pdf file containing perfromanc plots
 \description{
 This function plots model performance
 }
-\details{
-performancePlots
-}
 \examples{
 pred_label <- seq(0,1, length.out = 100)
 truth_label <- rep(c(0,1), each = 50)

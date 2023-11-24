@@ -1,4 +1,3 @@
-   #' gloveImport
    #' @title Cache and Load Pre-Trained Word Vectors
    #' @param url_path  URL path to GloVe embedding. Defaults to
    #' "https://nlp.stanford.edu/data"
@@ -46,7 +45,6 @@
 
 
 
-   #' loadTrainingSet
    #' @title Load Demo Training Set
    #' @param training_dir dir containing a training data.frame .csv
    #' Default set to "extdata/training_testSets".
@@ -84,7 +82,6 @@
       }
 
 
-   #' encodeViralSeq
    #' @title Viral Protein Sequence Encoding with GloVe Embedding Vectors
    #' @param trainingSet a data.frame containing training information
    #' @param embeddings_index embedding outputted from
@@ -148,7 +145,6 @@
    }
 
 
-   #' encodeHostSeq
    #' @title Host Protein Sequence Encoding with GloVe Embedding Vectors
    #' @param trainingSet a data.frame containing training information
    #' @param embeddings_index embedding outputted from
@@ -206,7 +202,6 @@
 
 
 
-   #' performancePlots
    #' @title Model Performance Evalution
    #' @param pred_label predicted labels
    #' @param y_label Ground truth labels
@@ -352,7 +347,6 @@
       }
 
 
-   #' modelTraining
    #' @title Predictive Model Training using k-fold Validation Strategy
    #' @param url_path  URL path to GloVe embedding. Defaults to
    #' "https://nlp.stanford.edu/data/glove.6B.zip".
@@ -603,8 +597,7 @@
 
 
 
-   #' loadPreTrainedModel
-   #' @title Load Pre-Trained Model Wights
+   #' @title Load Pre-Trained Model Weights
    #' @param input_dim Integer. Size of the vocabulary, i.e. amino acid tokens.
    #' Defults to 20. See \code{keras}.
    #' @param output_dim Integer. Dimension of the dense embedding, i.e., GloVe.
@@ -750,10 +743,9 @@
 
 
 
-   #'predInteractions
    #'@title Predict Unknown Interactions
-   #' @param url_path  URL path to GloVe embedding. Defaults to
-   #' "https://nlp.stanford.edu/data/glove.6B.zip".
+   #'@param url_path  URL path to GloVe embedding. Defaults to
+   #'"https://nlp.stanford.edu/data/glove.6B.zip".
    #'@param Testingset A data.frame containing unknown interactions. For demo,
    #'we can use the file in extdata/test_Set.
    #'@param trainedModel Pre-trained model stored in extdata/Pre_trainedModel
@@ -774,8 +766,8 @@
    #' # now predict interactions
    #' options(timeout=240)
    #' predInteractions <- predInteractions(url_path = "https://nlp.stanford.edu/data",
-   #'                     testing_set,
-   #'                     trainedModel)
+   #'                                      testing_set,
+   #'                                      trainedModel)
 
    predInteractions <-
       function(url_path = "https://nlp.stanford.edu/data",

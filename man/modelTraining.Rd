@@ -105,6 +105,3 @@ followed by applying an embedding layer. Then it employs Siamese-like
 neural network articheture on densly-connected neural net to
 predict interactions between host and viral proteins.
 }
-\details{
-modelTraining
-}
