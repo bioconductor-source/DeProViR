@@ -19,6 +19,5 @@ vectors (100d).
 }
 \examples{
 options(timeout=240)
-embeddings_index <-
-gloveImport(url_path = "https://nlp.stanford.edu/data")
+embeddings_index <- gloveImport(url_path = "https://nlp.stanford.edu/data")
 }
