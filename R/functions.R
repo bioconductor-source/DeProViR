@@ -9,6 +9,7 @@
    #' @importFrom BiocFileCache bfcrpath
    #' @importFrom BiocFileCache bfcinfo
    #' @importFrom BiocFileCache bfcquery
+   #' @importFrom BiocFileCache bfcnew
    #' @importFrom utils unzip
    #' @examples
    #' options(timeout=240)
@@ -25,11 +26,13 @@
               "glove.6B.zip",
               sep="/")
             bfc <- BiocFileCache()
+            if(length(bfc) == 0) {
             path <- bfcrpath(bfc, url)
             getid <- bfcquery(bfc, "glove")$rid
             lines <- readLines(unzip(zipfile = bfcinfo(bfc[getid])$rpath,
                                      files = "glove.6B.100d.txt",
                                      exdir = tempfile()))
+            saveRDS(lines, bfcnew(bfc, "glove_embedding"))
             embeddings_index <- new.env(hash = TRUE, parent = emptyenv())
             for (i in seq_along(lines)) {
                 line <- lines[[i]]
@@ -37,6 +40,20 @@
                 word <- values[[1]]
                 embeddings_index[[word]] <- as.double(values[-1])
             }
+            } 
+            if(length(bfc) != 0) {
+               
+               lines <- readRDS(bfcrpath(bfc, "glove_embedding"))
+               embeddings_index <- new.env(hash = TRUE, parent = emptyenv())
+               for (i in seq_along(lines)) {
+                  line <- lines[[i]]
+                  values <- strsplit(line, " ")[[1]]
+                  word <- values[[1]]
+                  embeddings_index[[word]] <- as.double(values[-1])
+               }
+               
+            }
+            
 
             return(embeddings_index)
 
