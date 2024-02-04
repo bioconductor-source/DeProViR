@@ -33,8 +33,7 @@ to indicate interaction.
 \examples{
 trainedModel <- loadPreTrainedModel()
 # load test set (i.e., unknown interactions)
-testing_set <- 
-  data.table::fread(system.file("extdata", "test_Set", 
+testing_set <- data.table::fread(system.file("extdata", "test_Set", 
                                "test_set_unknownInteraction.csv", 
                                 package = "DeProViR"))
 # now predict interactions
